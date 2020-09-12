@@ -144,8 +144,7 @@ const fi = (function() {
 
     functions: function(object) {
      let array = [];
-     let objKeys = Object.keys(object)
-     for(const key of objKeys){
+     for(const key in object){
        if(typeof object[key] === "function"){
         array.push(key)
        }
