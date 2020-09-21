@@ -144,24 +144,13 @@ uniq: function(array, isSorted=false, callback){
 
   ///first way
 
-  //return [... new Set(array)]
+  return [... new Set(array)]
   //second way
   //arr.filter((element,index)=> arr.indexOf(element) === index)
    //third way
-  let sorted =array.sort(function(a,b){return a-b})
-  isSorted=true
-  if (isSorted == true){
-  let k=sorted.map(function(element,index,sorted){
-      return element === sorted[index+1] ? delete sorted[index]:element
-    }
-    ).filter(el => typeof(el) == "number")
-
-  return k
-}
 
 //when applied %3
 return [... new Set(array.filter(el => el%3).sort(function(a,b){return a-b}))]
-
 
 },
 
