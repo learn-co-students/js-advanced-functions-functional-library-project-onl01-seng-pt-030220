@@ -181,12 +181,16 @@ values: function(object){
 
 functions: function(object) {
 console.log(object)
-//for(let i in object){
-//}
 
-object.keys.sort(function (a, b) {
-  return a - b;
-});
+let array=[]
+
+for(let i in object){
+
+ if (typeof(object[i]) === "function")
+    array.push(i)
+   }
+return   array.sort()
+
 
 },
 
