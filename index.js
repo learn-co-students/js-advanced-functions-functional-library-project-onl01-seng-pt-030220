@@ -122,8 +122,6 @@ sortBy: function(array, callback){
 
 flatten: function(array, shallow=false){
 //array.flat() not working
-
-shallow =true
 ///one level flat
  let single =[].concat(...array)
 if (shallow == true){
@@ -132,25 +130,41 @@ if (shallow == true){
 else
 {
 
-return  function deep(array) { return array.reduce((accum,element)=>
+function deep(array) { return array.reduce((accum,element)=>
  Array.isArray(element)?  accum.concat(deep(element)):accum.concat(element)
 ,[])}
 
+return deep(array)
 }
 
 },
 
-uniq: function(array, isSorted=false, callback){
+uniq: function(array, isSorted=false, callback=false){
 
   ///first way
 
-  return [... new Set(array)]
+//  return [... new Set(array)]
   //second way
   //arr.filter((element,index)=> arr.indexOf(element) === index)
    //third way
+  let sorted =array.sort(function(a,b){return a-b})//
+  if (isSorted){
+  let k=sorted.map(function(element,index,sorted){
+      return element === sorted[index+1] ? delete sorted[index]:element
+    }
+    ).filter(el => typeof(el) == "number")
+  return [... new Set(k)]
+}
 
+if(callback ){
+  //return [... new Set(array.filter(el => el%3).sort(function(a,b){return a-b}))]
+
+  let newArray = array.map(el=> callback(el))
+
+  return   [... new Set(newArray)]
+}
 //when applied %3
-return [... new Set(array.filter(el => el%3).sort(function(a,b){return a-b}))]
+return [... new Set(array)]
 
 },
 
@@ -168,7 +182,13 @@ values: function(object){
 
 
 functions: function(object) {
+console.log(object)
+//for(let i in object){
+//}
 
+object.sort(function (a, b) {
+  return a - b;
+});
 
 },
 
