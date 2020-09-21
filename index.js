@@ -116,8 +116,6 @@ compact: function(collection){
 sortBy: function(array, callback){
   let newArray=Array.from(array)
   return newArray.sort(function(a,b){return callback(a)-callback(b)})
-
-
 },
 
 flatten: function(array, shallow=false){
@@ -186,7 +184,7 @@ console.log(object)
 //for(let i in object){
 //}
 
-object.sort(function (a, b) {
+object.keys.sort(function (a, b) {
   return a - b;
 });
 
